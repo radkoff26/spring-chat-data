@@ -2,6 +2,9 @@ package com.radkoff26.springchatdata.domain.entity;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
+
+import org.hibernate.Hibernate;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
@@ -49,7 +52,7 @@ public class User {
     @Column(name = "is_online")
     private boolean isOnline;
     @Column(name = "last_online")
-    @NonNull
+    @Nullable
     private Timestamp lastOnline;
     @Column(name = "created_at")
     @NonNull
@@ -57,4 +60,17 @@ public class User {
     @ManyToMany(mappedBy = "users")
     @ToString.Exclude
     private List<Chat> chats;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
