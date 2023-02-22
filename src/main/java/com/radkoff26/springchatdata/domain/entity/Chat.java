@@ -1,4 +1,4 @@
-package com.radkoff26.springchatdata.domain.dto;
+package com.radkoff26.springchatdata.domain.entity;
 
 import java.util.List;
 
@@ -26,8 +26,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
-public class GroupChat {
+@Table(catalog = "chat", schema = "public", name = "chat")
+public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

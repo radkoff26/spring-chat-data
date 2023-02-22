@@ -1,4 +1,4 @@
-package com.radkoff26.springchatdata.domain.dto;
+package com.radkoff26.springchatdata.domain.entity;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -33,15 +33,14 @@ public class User {
     private String login;
     @NonNull
     private String password;
+    @NonNull
+    private String email;
     @Column(name = "first_name")
     @NonNull
     private String firstName;
     @Column(name = "last_name")
     @NonNull
     private String lastName;
-    @Column(name = "phone_number")
-    @Nullable
-    private String phoneNumber;
     @Nullable
     private String description;
     @Column(name = "avatar_slug")
@@ -57,5 +56,5 @@ public class User {
     private Timestamp createdAt;
     @ManyToMany(mappedBy = "users")
     @ToString.Exclude
-    private List<GroupChat> chats;
+    private List<Chat> chats;
 }

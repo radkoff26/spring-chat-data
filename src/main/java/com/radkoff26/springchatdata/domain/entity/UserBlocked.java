@@ -1,10 +1,9 @@
-package com.radkoff26.springchatdata.domain.dto;
+package com.radkoff26.springchatdata.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,12 +18,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(catalog = "chat", schema = "public", name = "user_blocked")
+@IdClass(UserBlockedId.class)
 public class UserBlocked {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     @Column(name = "blocker_id")
     private long blockerId;
-    @Column(name = "blocked_user_id")
-    private long blockedUserId;
+    @Id
+    @Column(name = "blocked_id")
+    private long blockedId;
 }

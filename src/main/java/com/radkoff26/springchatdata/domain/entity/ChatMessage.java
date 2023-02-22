@@ -1,12 +1,15 @@
-package com.radkoff26.springchatdata.domain.dto;
+package com.radkoff26.springchatdata.domain.entity;
 
 import java.sql.Timestamp;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,23 +24,27 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(catalog = "chat", schema = "public", name = "group_chat_message")
-public class GroupChatMessage {
+@Table(catalog = "chat", schema = "public", name = "chat_message")
+public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "sender_id")
-    private long senderId;
-    @Column(name = "group_chat_id")
-    private long groupChatId;
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    @NonNull
+    private User sender;
+    @ManyToOne
+    @JoinColumn(name = "chatId")
+    @NonNull
+    private Chat chat;
     @NonNull
     private String text;
-    @Column(name = "reply_to_message_id")
-    private long replyToMessageId;
-    @Column(name = "is_removed_for_all")
-    private boolean isRemovedForAll;
-    @Column(name = "is_removed_for_sender")
-    private boolean isRemovedForSender;
+    @ManyToOne
+    @JoinColumn(name = "reply_to_message_id")
+    @Nullable
+    private ChatMessage replyToMessage;
+    @Column(name = "is_removed")
+    private boolean isRemoved;
     @Column(name = "is_edited")
     private boolean isEdited;
     @Column(name = "sent_at")
