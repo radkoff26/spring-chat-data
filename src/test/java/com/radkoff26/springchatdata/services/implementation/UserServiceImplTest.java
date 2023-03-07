@@ -31,6 +31,7 @@ class UserServiceImplTest {
                 "login",
                 "password",
                 "email",
+                false,
                 "firstName",
                 "lastName",
                 null,

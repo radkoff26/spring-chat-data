@@ -2,5 +2,10 @@ package com.radkoff26.springchatdata.domain.entity;
 
 import java.io.Serializable;
 
-public record ChatMessageUnseenId(long receiverId, long chatMessageId) implements Serializable {
+import lombok.Data;
+
+@Data
+public class ChatMessageUnseenId implements Serializable {
+    private long receiverId;
+    private long chatMessageId;
 }

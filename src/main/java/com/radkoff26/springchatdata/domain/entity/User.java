@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(catalog = "chat", schema = "public")
+@Table(catalog = "chat", schema = "public", uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +39,9 @@ public class User {
     private String password;
     @NonNull
     private String email;
+    @Column(name = "is_email_verified")
+    @NonNull
+    private boolean isEmailVerified;
     @Column(name = "first_name")
     @NonNull
     private String firstName;

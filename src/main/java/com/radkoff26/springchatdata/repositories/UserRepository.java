@@ -8,4 +8,5 @@ import com.radkoff26.springchatdata.domain.entity.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
+    User findUserByLogin(String login);
 }

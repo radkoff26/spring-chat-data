@@ -4,4 +4,6 @@ import com.radkoff26.springchatdata.domain.entity.User;
 
 public interface UserService {
     User saveUser(User user);
+    User getUserByLogin(String login);
+    User getUserById(long id);
 }
